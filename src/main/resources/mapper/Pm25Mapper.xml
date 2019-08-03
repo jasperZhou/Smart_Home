@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itqf.mapper.Pm25Mapper">
+  <resultMap id="BaseResultMap" type="com.itqf.pojo.Pm25">
+    <id column="pmid" jdbcType="INTEGER" property="pmid" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="pm25" jdbcType="VARCHAR" property="pm25" />
+    <result column="filterer" jdbcType="VARCHAR" property="filterer" />
+    <result column="temperature" jdbcType="INTEGER" property="temperature" />
+    <result column="humidity" jdbcType="INTEGER" property="humidity" />
+    <result column="outdoorpm25" jdbcType="INTEGER" property="outdoorpm25" />
+    <result column="residualofe" jdbcType="INTEGER" property="residualofe" />
+    <result column="comfortlevel" jdbcType="INTEGER" property="comfortlevel" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="runconstant" jdbcType="INTEGER" property="runconstant" />
+    <result column="airpq" jdbcType="INTEGER" property="airpq" />
+    <result column="function" jdbcType="INTEGER" property="function" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="electricity" jdbcType="INTEGER" property="electricity" />
+    <result column="hour" jdbcType="INTEGER" property="hour" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pmid, imgurl, pm25, filterer, temperature, humidity, outdoorpm25, residualofe, comfortlevel, 
+    location, runconstant, airpq, function, state, electricity, hour
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pm25
+    where pmid = #{pmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pm25
+    where pmid = #{pmid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itqf.pojo.Pm25">
+    insert into pm25 (pmid, imgurl, pm25, 
+      filterer, temperature, humidity, 
+      outdoorpm25, residualofe, comfortlevel, 
+      location, runconstant, airpq, 
+      function, state, electricity, 
+      hour)
+    values (#{pmid,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{pm25,jdbcType=VARCHAR}, 
+      #{filterer,jdbcType=VARCHAR}, #{temperature,jdbcType=INTEGER}, #{humidity,jdbcType=INTEGER}, 
+      #{outdoorpm25,jdbcType=INTEGER}, #{residualofe,jdbcType=INTEGER}, #{comfortlevel,jdbcType=INTEGER}, 
+      #{location,jdbcType=VARCHAR}, #{runconstant,jdbcType=INTEGER}, #{airpq,jdbcType=INTEGER}, 
+      #{function,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{electricity,jdbcType=INTEGER}, 
+      #{hour,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itqf.pojo.Pm25">
+    insert into pm25
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pmid != null">
+        pmid,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+      <if test="pm25 != null">
+        pm25,
+      </if>
+      <if test="filterer != null">
+        filterer,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="humidity != null">
+        humidity,
+      </if>
+      <if test="outdoorpm25 != null">
+        outdoorpm25,
+      </if>
+      <if test="residualofe != null">
+        residualofe,
+      </if>
+      <if test="comfortlevel != null">
+        comfortlevel,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="runconstant != null">
+        runconstant,
+      </if>
+      <if test="airpq != null">
+        airpq,
+      </if>
+      <if test="function != null">
+        function,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="electricity != null">
+        electricity,
+      </if>
+      <if test="hour != null">
+        hour,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pmid != null">
+        #{pmid,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null">
+        #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="filterer != null">
+        #{filterer,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=INTEGER},
+      </if>
+      <if test="humidity != null">
+        #{humidity,jdbcType=INTEGER},
+      </if>
+      <if test="outdoorpm25 != null">
+        #{outdoorpm25,jdbcType=INTEGER},
+      </if>
+      <if test="residualofe != null">
+        #{residualofe,jdbcType=INTEGER},
+      </if>
+      <if test="comfortlevel != null">
+        #{comfortlevel,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="runconstant != null">
+        #{runconstant,jdbcType=INTEGER},
+      </if>
+      <if test="airpq != null">
+        #{airpq,jdbcType=INTEGER},
+      </if>
+      <if test="function != null">
+        #{function,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="electricity != null">
+        #{electricity,jdbcType=INTEGER},
+      </if>
+      <if test="hour != null">
+        #{hour,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itqf.pojo.Pm25">
+    update pm25
+    <set>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null">
+        pm25 = #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="filterer != null">
+        filterer = #{filterer,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=INTEGER},
+      </if>
+      <if test="humidity != null">
+        humidity = #{humidity,jdbcType=INTEGER},
+      </if>
+      <if test="outdoorpm25 != null">
+        outdoorpm25 = #{outdoorpm25,jdbcType=INTEGER},
+      </if>
+      <if test="residualofe != null">
+        residualofe = #{residualofe,jdbcType=INTEGER},
+      </if>
+      <if test="comfortlevel != null">
+        comfortlevel = #{comfortlevel,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="runconstant != null">
+        runconstant = #{runconstant,jdbcType=INTEGER},
+      </if>
+      <if test="airpq != null">
+        airpq = #{airpq,jdbcType=INTEGER},
+      </if>
+      <if test="function != null">
+        function = #{function,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="electricity != null">
+        electricity = #{electricity,jdbcType=INTEGER},
+      </if>
+      <if test="hour != null">
+        hour = #{hour,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pmid = #{pmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itqf.pojo.Pm25">
+    update pm25
+    set imgurl = #{imgurl,jdbcType=VARCHAR},
+      pm25 = #{pm25,jdbcType=VARCHAR},
+      filterer = #{filterer,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=INTEGER},
+      humidity = #{humidity,jdbcType=INTEGER},
+      outdoorpm25 = #{outdoorpm25,jdbcType=INTEGER},
+      residualofe = #{residualofe,jdbcType=INTEGER},
+      comfortlevel = #{comfortlevel,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      runconstant = #{runconstant,jdbcType=INTEGER},
+      airpq = #{airpq,jdbcType=INTEGER},
+      function = #{function,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      electricity = #{electricity,jdbcType=INTEGER},
+      hour = #{hour,jdbcType=INTEGER}
+    where pmid = #{pmid,jdbcType=INTEGER}
+  </update>
+</mapper>
