@@ -1,8 +1,9 @@
-/*
 package com.itqf.controller;
 
 
+import com.itqf.pojo.Pm25;
 import com.itqf.pojo.Tablelamp;
+import com.itqf.service.Pm25Service;
 import com.itqf.service.TablelampService;
 import com.itqf.util.DataView;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,65 +19,25 @@ public class Pm25Controller {
 
 
     @Resource
-    private Pm25Controller pm25Controller;
+    private Pm25Service pm25Service;
 
 
     //主键查看
     @RequestMapping(method = RequestMethod.GET, value = "/firstpage/equipment/pm25")
     public DataView findall(int id) {
 
-        //int i= tablelampService.updateByPrimaryKeySelective(tablelamp);
+        Pm25 pm25 = pm25Service.selectByPrimaryKey(id);
 
-        Tablelamp tablelamp = tablelampService.findall(id);
-
-        DataView<Tablelamp> dataView = new DataView<Tablelamp>();
+        DataView<Pm25> dataView = new DataView<Pm25>();
 
 
-        List<Tablelamp> t = new ArrayList();
-        t.add(tablelamp);
+        List<Pm25> t = new ArrayList();
+        t.add(pm25);
         dataView.setData(t);
 
         return dataView;
-    }
-
-
-    //状态修改
-    @RequestMapping(method = RequestMethod.GET, value = "/equipment/lamp/update")
-    public DataView update(Tablelamp tablelamp) {
-        int i = tablelampService.updateByPrimaryKeySelective(tablelamp);
-
-
-        DataView<Tablelamp> dataView = new DataView<Tablelamp>();
-        dataView.setCode(1);
-        dataView.setMsg("成功");
-
-        List<Tablelamp> t = new ArrayList();
-        t.add(tablelamp);
-        dataView.setData(t);
-
-        return dataView;
-
-    }
-
-    //状态修改
-    @RequestMapping(method = RequestMethod.GET, value = "/equipment/lamp/insert")
-    public DataView insert(Tablelamp tablelamp) {
-        int i = tablelampService.insertSelective(tablelamp);
-
-
-        DataView<Tablelamp> dataView = new DataView<Tablelamp>();
-        dataView.setCode(0);
-        dataView.setMsg("成功1");
-
-        List<Tablelamp> t = getTablelamps();
-        t.add(tablelamp);
-        dataView.setData(t);
-
-        return dataView;
-
     }
 
 
 
 }
-*/

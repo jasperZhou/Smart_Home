@@ -1,8 +1,25 @@
 package com.itqf.service;
 
+import com.itqf.mapper.Pm25Mapper;
 import com.itqf.pojo.Pm25;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+
+
+
+
+@Service
 public class Pm25ServiceImpl implements Pm25Service {
+
+    @Resource
+    private Pm25Mapper pm25Mapper;
+
+
+
+
+
     @Override
     public int deleteByPrimaryKey(Integer pmid) {
         return 0;
@@ -20,7 +37,7 @@ public class Pm25ServiceImpl implements Pm25Service {
 
     @Override
     public Pm25 selectByPrimaryKey(Integer pmid) {
-        return null;
+        return pm25Mapper.selectByPrimaryKey(pmid);
     }
 
     @Override

@@ -1,9 +1,10 @@
 package com.itqf.controller;
 
+import com.itqf.pojo.Robot;
 import com.itqf.pojo.Tablelamp;
+import com.itqf.service.RobotService;
 import com.itqf.service.TablelampService;
 import com.itqf.util.DataView;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,37 +17,22 @@ import java.util.Map;
 
 
 @RestController
-public class TableController {
-
+public class RobotController {
 
     @Resource
-    private TablelampService tablelampService;
-
-
-    //全查展示
-    @RequestMapping(method = RequestMethod.GET, value = "/firstpage/equipment/socket")
-    public Map findall() {
-        List findall = tablelampService.findall();
-
-        Map map = new HashMap();
-
-        map.put("data", findall);
-
-        return map;
-    }
-
+    private RobotService robotService;
 
     //主键查看
-    @RequestMapping(method = RequestMethod.GET, value = "/equipment/lamp/show")
+    @RequestMapping(method = RequestMethod.GET, value = "/smarthome/AI/show")
     public Map findbyid(int id) {
-        Tablelamp tablelamp = tablelampService.findbyid(id);
+
+        Robot robot = robotService.selectByPrimaryKey(id);
 
 
 
         Map m = new HashMap();
-        m.put("temperature", tablelamp.getUrl());
-        m.put("state", tablelamp.getTablelampid());
-        m.put("lightness", tablelamp.getName());
+        m.put("aiimg", robot.getAiimg());
+        m.put("status", robot.getStatus());
 
         Map map = new HashMap();
         map.put("data", m);
@@ -54,7 +40,7 @@ public class TableController {
         return map;
     }
 
-
+/*
     //状态修改
     @RequestMapping(method = RequestMethod.GET, value = "/equipment/lamp/update")
     public DataView update(Tablelamp tablelamp) {
@@ -70,9 +56,7 @@ public class TableController {
 
         return dataView;
 
-    }
-
-
+    }*/
 
 
 }
